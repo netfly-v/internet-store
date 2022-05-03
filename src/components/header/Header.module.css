@@ -1,0 +1,71 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 50px;
+  cursor: pointer;
+}
+
+.headerRightSide {
+  display: flex;
+  align-items: center;
+}
+
+.profile {
+  text-decoration: none;
+}
+
+.NavLinkLoginButton {
+  align-self: center;
+  margin-right: 20px;
+}
+
+.cartWrapper {
+  position: relative;
+}
+
+.cart {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+}
+
+.login {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  color: darkgray;
+}
+
+.login:hover {
+  color: blue;
+}
+
+.loginOk {
+  font-size: 20px;
+  padding-bottom: 3px;
+  margin-right: 10px;
+}
+
+.cartImg {
+  height: 35px;
+}
+
+.quantity {
+  position: absolute;
+  background-color: rgb(4, 176, 4);
+  width: 20px;
+  height: 20px;
+  color: white;
+  border-radius: 50%;
+  top: -3px;
+  right: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
