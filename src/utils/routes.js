@@ -1,8 +1,7 @@
 export const ROUTES = {
-  PRODUCTS: '/',
-  PRODUCT_PAGE: '/product/:productId',
-  CATEGORY_PAGE: '/category/:categoryName',
-  LOGIN_PAGE: '/login/',
-  CART_PAGE: 'CART_PAGE',
-  PROFILE_PAGE: '/profilePage/'
+  PRODUCTS: '/internet-store/',
+  PRODUCT_PAGE: '/internet-store/product/:productId',
+  CATEGORY_PAGE: '/internet-store/category/:categoryName',
+  LOGIN_PAGE: '/internet-store/login/',
+  PROFILE_PAGE: '/internet-store/profilePage/'
 };

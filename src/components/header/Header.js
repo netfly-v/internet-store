@@ -10,8 +10,9 @@ import { connect } from 'react-redux';
 import { logoutThunk } from '../../store/thunks/authThunk';
 import { ModalWindow } from 'components/modal/ModalWindow';
 import { productsAmountSelector } from 'store/state/cart/selectors';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { auth } from 'utils/auth';
 
 const Header = ({ authUser, productsAmount, logout }) => {
   const [isModal, setModal] = useState(false);
@@ -23,7 +24,7 @@ const Header = ({ authUser, productsAmount, logout }) => {
   };
 
   const onClose = () => setModal(false);
-    
+
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -48,14 +49,23 @@ const Header = ({ authUser, productsAmount, logout }) => {
           </NavLink>
         )}
         <div className={styles.cartWrapper}>
-          <button
-            className={styles.cart}
-            onClick={() => {
-              setModal(true);
-            }}
-          >
-            <img src={cartImg} className={styles.cartImg} alt="cart img" />
-          </button>
+          {auth.get() ? (
+            <button
+              className={styles.cart}
+              onClick={() => {
+                setModal(true);
+              }}
+            >
+              <img src={cartImg} className={styles.cartImg} alt="cart img" />
+            </button>
+          ) : (
+            <NavLink to={ROUTES.LOGIN_PAGE}>
+              <button className={styles.cart}>
+                <img src={cartImg} className={styles.cartImg} alt="cart img" />
+              </button>
+            </NavLink>
+          )}
+
           <div className={styles.quantity}>{productsAmount}</div>
         </div>
 

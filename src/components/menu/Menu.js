@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ROUTES } from 'utils/routes';
 import { categoriesSelector } from '../../store/state/categories/selectors';
 import { getCategoriesThunk } from '../../store/thunks/categoriesThunk';
 import { classNames } from '../../utils/utils';
@@ -16,7 +17,7 @@ const Menu = ({ categories, getCategories }) => {
   }, []);
 
   const getProductsByCategory = category => {
-    navigate(`/category/${category}`);
+    navigate(`${ROUTES.PRODUCTS}category/${category}`);
   };
 
   return (

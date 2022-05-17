@@ -4,7 +4,8 @@ import {
   priceOfProductsInOrderSelector,
   productsInOrderSelector,
 } from 'store/state/orders/selectors';
-import { useNavigate } from '../../../node_modules/react-router-dom/index';
+import { ROUTES } from 'utils/routes';
+import { useNavigate } from 'react-router-dom';
 import styles from './Order.module.css';
 
 const Order = ({ order, products, priceOfProductsInOrder, orderAmount }) => {
@@ -16,7 +17,7 @@ const Order = ({ order, products, priceOfProductsInOrder, orderAmount }) => {
   const navigate = useNavigate();
 
   const navigateToProduct = productId => {
-    navigate(`/product/${productId}`);
+    navigate(`${ROUTES.PRODUCTS}product/${productId}`);
   };
 
   return (

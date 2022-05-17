@@ -6,6 +6,7 @@ import addToCartImg from '../../images/addToCart.png';
 import { productsAPI } from '../../api/products';
 import { connect } from 'react-redux';
 import { setProductsInCartThunk } from 'store/thunks/cartThunk';
+import { ROUTES } from 'utils/routes';
 
 const ProductPage = ({ setProductsInCart }) => {
   const { productId } = useParams();
@@ -17,7 +18,7 @@ const ProductPage = ({ setProductsInCart }) => {
   }, []);
 
   const getBack = () => {
-    navigate(`/category/${product.category}`);
+    navigate(`${ROUTES.PRODUCTS}category/${product.category}`);
   };
 
   return product ? (
@@ -60,4 +61,3 @@ const mapDispatchToProps = {
 
 export default connect(null, mapDispatchToProps)(ProductPage);
 
-// export default ProductPage;

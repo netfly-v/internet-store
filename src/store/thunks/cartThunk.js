@@ -4,6 +4,7 @@ import { cartStorage } from 'utils/cartStorage';
 import { QUANTITY } from 'utils/consts';
 import { toast } from 'react-toastify';
 import { addToCartAction, changeQuantityAction, deleteFromCartAction, orderNowAction } from '../state/cart/actions';
+import { auth } from 'utils/auth';
 
 const calculateQuantity = (quantity, updatedQuantity) =>
   typeof updatedQuantity === 'string' ? quantity + parseInt(updatedQuantity, 10) : updatedQuantity;
@@ -44,18 +45,30 @@ const updateCart = cart =>
   });
 
 export const setProductsInCartThunk = updatedProductId => (dispatch, getState) => {
-  const cart = getUpdatedCart(getState(), updatedProductId);
+  if (auth.get()) {
+    const cart = getUpdatedCart(getState(), updatedProductId);
 
-  updateCart(cart).then(() => dispatch(addToCartAction(cart)));
-  toast.info('Item added to cart', {
-    position: 'top-right',
-    autoClose: 2000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+    updateCart(cart).then(() => dispatch(addToCartAction(cart)));
+    toast.info('Item added to cart', {
+      position: 'top-right',
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  } else {
+    toast.error('Not logged in', {
+      position: 'top-right',
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 };
 
 export const changeQuantityThunk = (updatedProductId, qty) => (dispatch, getState) => {

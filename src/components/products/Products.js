@@ -4,6 +4,7 @@ import { getProductsSelectorByCategory } from '../../store/state/products/select
 import styles from './Products.module.css';
 import { authSelector } from '../../store/state/auth/selectors';
 import ProductCard from './ProductCard';
+import { ROUTES } from 'utils/routes';
 
 const Products = ({ getProductsByCategory }) => {
   const { categoryName } = useParams();
@@ -12,7 +13,7 @@ const Products = ({ getProductsByCategory }) => {
   const navigate = useNavigate();
 
   const openProductDetails = productId => {
-    navigate(`/product/${productId}`);
+    navigate(`${ROUTES.PRODUCTS}product/${productId}`);
   };
 
   return (
