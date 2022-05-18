@@ -7,7 +7,6 @@ export const getOrdersHistoryThunk = userId => (dispatch, getState) => {
     const state = getState();
     const prevOrdersHistoryById = ordersHistoryByIdSelector(state);
     const filteredOrders = orders.filter(({ id }) => !prevOrdersHistoryById[id]);
-    console.log(filteredOrders, prevOrdersHistoryById)
     dispatch(getOrdersHistoryAction(filteredOrders));
   });
 };

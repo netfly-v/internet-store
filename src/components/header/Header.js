@@ -19,16 +19,12 @@ const Header = ({ authUser, productsAmount, logout }) => {
 
   const navigate = useNavigate();
 
-  const goToMainPage = () => {
-    navigate(ROUTES.PRODUCTS);
-  };
-
   const onClose = () => setModal(false);
 
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
-        <img src={logo} alt="logo" onClick={goToMainPage} />
+        <img src={logo} alt="logo" onClick={() => navigate(ROUTES.PRODUCTS)} />
       </div>
       <div className={styles.headerRightSide}>
         {authUser.username ? (
@@ -49,23 +45,18 @@ const Header = ({ authUser, productsAmount, logout }) => {
           </NavLink>
         )}
         <div className={styles.cartWrapper}>
-          {auth.get() ? (
-            <button
-              className={styles.cart}
-              onClick={() => {
+          <button
+            className={styles.cart}
+            onClick={() => {
+              if (auth.get()) {
                 setModal(true);
-              }}
-            >
-              <img src={cartImg} className={styles.cartImg} alt="cart img" />
-            </button>
-          ) : (
-            <NavLink to={ROUTES.LOGIN_PAGE}>
-              <button className={styles.cart}>
-                <img src={cartImg} className={styles.cartImg} alt="cart img" />
-              </button>
-            </NavLink>
-          )}
-
+              } else {
+                navigate(ROUTES.LOGIN_PAGE);
+              }
+            }}
+          >
+            <img src={cartImg} className={styles.cartImg} alt="cart img" />
+          </button>
           <div className={styles.quantity}>{productsAmount}</div>
         </div>
 

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { throttle } from 'lodash';
 
 import { changeQuantityThunk, deleteFromCartThunk } from 'store/thunks/cartThunk';
 import { QUANTITY } from 'utils/consts';
@@ -9,8 +8,7 @@ import styles from './CartItem.module.css';
 
 const CartItem = ({ product, changeQuantityInCart, deleteFromCart }) => {
   const [quantity, setQuantity] = useState(product.quantity);
-  //todo throttle
-  const debounced = throttle(updatedQuantity => changeQuantityInCart(product.id, updatedQuantity), 2500);
+  const debounced = updatedQuantity => changeQuantityInCart(product.id, updatedQuantity);
 
   const updateLocalQuantity = ({ target }) => {
     const { value } = target;
@@ -72,8 +70,6 @@ const CartItem = ({ product, changeQuantityInCart, deleteFromCart }) => {
           type="button"
           name="button"
           onClick={() => {
-
-            //product.quantity?
             if (quantity > 1) {
               setQuantity(quantity - 1);
               changeQuantityRequest(QUANTITY.DECREMENT);
@@ -88,13 +84,6 @@ const CartItem = ({ product, changeQuantityInCart, deleteFromCart }) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state, props) => {
-//   const quantity = getQuantityByProductIdSelector(state, props.product.id);
-//   return {
-//     quantity: getQuantityByProductIdSelector(state),
-//   };
-// };
 
 const mapDispatchToProps = {
   changeQuantityInCart: changeQuantityThunk,

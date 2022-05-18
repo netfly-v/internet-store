@@ -1,3 +1,5 @@
+// ! normal auth is not working, using fakeAuth
+
 import axios from 'axios';
 import { logins } from '../server-helpers/logins';
 
@@ -17,4 +19,3 @@ import { logins } from '../server-helpers/logins';
 //       .then(response => response.data);
 //   },
 // };
-

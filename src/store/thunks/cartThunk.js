@@ -49,25 +49,9 @@ export const setProductsInCartThunk = updatedProductId => (dispatch, getState) =
     const cart = getUpdatedCart(getState(), updatedProductId);
 
     updateCart(cart).then(() => dispatch(addToCartAction(cart)));
-    toast.info('Item added to cart', {
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast.info('Item added to cart');
   } else {
-    toast.error('Not logged in', {
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast.error('Not logged in');
   }
 };
 
@@ -113,20 +97,10 @@ export const orderNowThunk = () => (dispatch, getState) => {
     order.id += idCounter;
 
     dispatch(orderNowAction());
-    // dispatch(setNotificationAction(`Order ${order.id} was added!`, 'success'));
     cartStorage.delete();
 
     dispatch(addNewOrderAction(order));
     idCounter++;
-    toast.success('Order success', {
-      toastId: 'cart',
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast.success('Order success');
   });
 };

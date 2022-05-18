@@ -11,27 +11,11 @@ export const loginThunk = (username, password) => dispatch => {
     dispatch(loginUserAction({ username, password, userId }));
     auth.set({ username, password, userId });
     dispatch(setErrorAction(''));
-    toast.success(`${username} logged in`, {
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast.success(`${username} logged in`);
   } else {
     auth.delete();
     dispatch(setErrorAction('login or pass invalid'));
-    toast.error('Login failed', {
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    toast.error('Login failed');
   }
 };
 

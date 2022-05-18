@@ -19,12 +19,3 @@ export const productsFromPropsSelector = (_, props) => props.order.products;
 export const orderAmountSelector = makeProductsAmountSelector(productsFromPropsSelector);
 export const productsInOrderSelector = makeProductsInCartSelector(productsFromPropsSelector);
 export const priceOfProductsInOrderSelector = makePriceOfProductsInCartSelector(productsInOrderSelector);
-
-// old products selector
-// export const productsInHistorySelector = createSelector(ordersHistorySelector, productsById, (orders, productsById) =>
-//   orders.map(({ products, date }) => [
-//     date,
-//     products.reduce((acc, el) => acc + el.quantity, 0),
-//     ...products.map(({ productId, quantity }) => ({ ...productsById[productId], quantity })),
-//   ])
-// );
