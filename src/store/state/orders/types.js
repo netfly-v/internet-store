@@ -1,2 +1,0 @@
-export const GET_ORDERS_HISTORY = 'GET_ORDERS_HISTORY'
-export const ADD_NEW_ORDER = 'ADD_NEW_ORDER'
